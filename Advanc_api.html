@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API</title>
+    <style>
+        .main{
+            height: 550px;
+            width: 35%;
+            background-color: #9d4edd;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            position: relative;
+            top: 40px;
+            left: 450px;
+            border-radius: 10px;
+            box-shadow: 5px 10px 20px #5a189a;
+        }
+        .photo{
+            height: 200px;
+            width: 180px;
+            border-radius: 5px;
+            position: relative;
+            top: -50px;
+            border: 2px solid black;
+            background-size: cover; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .followers{
+            height: 30px;
+            width: 100px;
+            position: relative;
+            border: 2px solid black;
+            border-radius: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;  
+        }
+        button{
+            padding: 10px;
+            width: 80px;
+            border-radius: 5px;
+            outline: none;
+            background-color: #ffd60a;
+            position: relative;
+            top: -34px;
+        }
+        p{
+            position: relative;
+            top: -79px;
+            font-size: larger;
+        }
+    </style>
+</head>
+<body style="background-color: #edf2f4;">
+    <div class="main">
+        <div class="photo"></div>
+        <div class="followers"></div>
+        <p>No. of Followers on GitHub</p>
+        <button>Data</button>
+    </div>
+<script>
+    const btn = document.querySelector('button');
+
+    btn.addEventListener('click', () => {
+    const requestUrl = 'https://api.github.com/users/ajju-09';
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', requestUrl);
+    xhr.onreadystatechange = function () {
+        if(xhr.readyState === 4){
+        const data = JSON.parse(this.responseText);
+        document.querySelector('.photo').style.backgroundImage = "url('https://avatars.githubusercontent.com/u/156096110?v=4')";
+        // document.querySelector('.photo').innerHTML = `${data.avatar_url}`;
+        document.querySelector('.followers').innerHTML = `${data.followers}`;
+            // console.log(typeof data); //Object
+            console.log(data);
+        }
+    }
+    xhr.send();
+    });
+</script>
+</body>
+</html>

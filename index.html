@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo</title>
+    <style>
+        body{
+            background-color: black;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <ul class="language">
+        <li>JavaScript</li>
+    </ul>
+    
+</body>
+<script>
+    const div = document.createElement('div');
+
+    div.style.height = "300px";
+    div.style.width = "300px";
+    div.style.backgroundColor = 'red';
+    div.style.margin = '200px';
+    // div.innerText = 'This is a div';
+    const text = document.createTextNode('This is a div');
+    div.appendChild(text);
+
+    document.body.appendChild(div);
+
+    function addLanguage(langName){
+        const li = document.createElement('li');
+        li.innerHTML = `${langName}`;
+        document.querySelector('.language').appendChild(li);
+    }
+    // Above function is less optimized 
+    // This function traverse whole tree to find node
+    addLanguage("C++");
+    addLanguage("typescript");
+
+    // Optimized way to write above function
+    function addOptiLanguage(langName){
+        const li = document.createElement('li');
+        li.appendChild(document.createTextNode(langName));
+        document.querySelector('.language').appendChild(li);    
+    }
+    // This method does not traverse tree for search of node
+    addOptiLanguage("Java");
+
+
+    //Edit
+    const secondlang = document.querySelector("li:nth-child(2)");
+    const newLi = document.createElement("li");
+    newLi.textContent = 'HTML';
+    secondlang.replaceWith(newLi);
+
+    //Edit
+    const Firstlang = document.querySelector("li:first-child");
+    const firstNew = Firstlang.outerHTML = '<li>Python</li>';
+    Firstlang.replaceWith(firstNew);
+    
+
+    //remove
+    const lastLi = document.querySelector('li:last-child');
+    lastLi.remove();
+</script>
+</html>

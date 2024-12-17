@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React</title>
+</head>
+<body>
+    <button>Button click!</button>
+</body>
+<script>
+    class react{
+        constructor(){
+            this.library = 'React';
+            this.server = 'htttps://localhost:3000';
+
+            document
+            .querySelector('button')
+            .addEventListener('click', this.handleClicked.bind(this));
+            // Bind give us access of all variables and methods and this also
+            // bind() method, an object can borrow a method from another object.
+        }
+
+        handleClicked(){
+            console.log('Button Clicked');
+            console.log(`${this.server}`);
+        }
+
+}
+
+    const user = new react();
+
+
+
+</script>
+</html>

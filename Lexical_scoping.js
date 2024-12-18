@@ -17,4 +17,4 @@ function outer(){
     inner();
 }
 outer(); // Output : something
-console.log(some); // Throws error
+// console.log(some); // Throws error
